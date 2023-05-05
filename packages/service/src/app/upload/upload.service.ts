@@ -6,7 +6,6 @@ import {
   ref,
   uploadBytesResumable,
 } from 'firebase/storage';
-import * as Express from 'multer';
 
 @Injectable()
 export class UploadService {
