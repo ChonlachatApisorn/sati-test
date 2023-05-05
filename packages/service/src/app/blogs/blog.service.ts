@@ -26,4 +26,8 @@ export class BlogService {
   delete(id: string) {
     return this.model.findByIdAndDelete(id);
   }
+
+  uploadPathImage(id: string, imageUrl: string) {
+    return this.model.findByIdAndUpdate(id, { image: imageUrl }, { new: true });
+  }
 }
