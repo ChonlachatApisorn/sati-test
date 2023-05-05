@@ -44,4 +44,12 @@ export class UserService {
   findByEmail(email: string) {
     return this.model.findOne({ email: email });
   }
+
+  updatePathImage(id: string, imageUrl: string) {
+    return this.model.findByIdAndUpdate(
+      id,
+      { profile_image: imageUrl },
+      { new: true }
+    );
+  }
 }
