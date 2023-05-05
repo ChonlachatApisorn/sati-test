@@ -36,4 +36,12 @@ export class UserService {
   delete(id: string) {
     return this.model.findByIdAndDelete(id, { new: true });
   }
+
+  findById(id: string) {
+    return this.model.findById(id);
+  }
+
+  findByEmail(email: string) {
+    return this.model.findOne({ email: email });
+  }
 }
