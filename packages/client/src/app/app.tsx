@@ -1,7 +1,7 @@
-import Test from './components/test';
+import Router from './routes';
 
 export function App() {
-  return <Test />;
+  return <Router />;
 }
 
 export default App;
