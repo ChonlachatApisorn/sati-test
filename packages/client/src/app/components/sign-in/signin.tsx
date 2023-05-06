@@ -64,7 +64,7 @@ export function SignIn() {
             </button>
             <div className="flex justify-center mt-4">
               <a
-                href="*"
+                href="sign-up"
                 className="text-sm ml-2 hover:text-cyan-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all"
               >
                 Don't have an account yet?
