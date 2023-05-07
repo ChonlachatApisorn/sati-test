@@ -11,7 +11,6 @@ export function SignIn() {
   });
 
   const { setUser } = useContext(AuthContext);
-  console.log(setUser);
 
   const navigate = useNavigate();
 

@@ -17,11 +17,11 @@ export function Router() {
         <>
           <Route path="*" element={<SignIn />} />
           <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
         </>
       ) : (
         <>
           <Route path="*" element={<Homepage />} />
-          <Route path="sign-up" element={<SignUp />} />
           <Route path="create-post" element={<CreatePostForm />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="update-profile" element={<UpdateProfilePage />} />
