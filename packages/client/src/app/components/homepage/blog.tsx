@@ -4,7 +4,7 @@ export function BlogCard() {
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-3 w-screen">
-        <div className="flex flex-col items-center bg-sky-900 rounded-3xl drop-shadow-xl w-96 h-64 m-20 ">
+        <div className="flex flex-col items-center bg-sky-900 rounded-3xl drop-shadow-xl w-96 h-64 mx-20 mt-20">
           <div className="flex flex-row items-center w-full h-16 rounded-t-3xl bg-sky-800">
             <div className="flex flex-row w-full">
               <div className="w-9 h-9 rounded-full bg-white drop-shadow-lg ml-3 mt-2" />
