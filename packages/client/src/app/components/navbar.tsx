@@ -37,7 +37,10 @@ export function Navbar({ children }: PropType) {
             </Link>
           </div>
           <div className="flex font-medium text-sm">
-            <Link className="mr-3 flex justify-center items-center" to="*">
+            <Link
+              className="mr-3 flex justify-center items-center"
+              to="create-post"
+            >
               <button className="bg-sky-100 rounded-xl text-sky-600 hover:bg-sky-600 hover:text-sky-100 hover:translate-y-[2px] transition-all w-28 h-8">
                 Create Post +
               </button>
