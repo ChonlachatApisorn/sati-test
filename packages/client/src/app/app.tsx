@@ -1,7 +1,12 @@
+import { Navbar } from './components/navbar';
 import Router from './routes';
 
 export function App() {
-  return <Router />;
+  return (
+    <Navbar>
+      <Router />
+    </Navbar>
+  );
 }
 
 export default App;
