@@ -41,8 +41,18 @@ export class UserController {
     return this.service.findById(id);
   }
 
+  @UseGuards(JwtGuard)
   @Put('update/:id')
-  update(@Param('id') id: string, @Body() dto: UserDto) {
+  @UseInterceptors(FileInterceptor('profile_image'))
+  async update(
+    @UploadedFile() file: Express.Multer.File,
+    @Param('id') id: string,
+    @Body() dto: UserDto
+  ) {
+    if (file) {
+      const image = await this.uploadService.upload(file);
+      dto.profile_image = image.url;
+    }
     return this.service.update(id, dto);
   }
 

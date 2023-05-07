@@ -4,4 +4,5 @@ export class UserDto {
   password: string;
   email: string;
   date_of_birth: string;
+  profile_image: string;
 }

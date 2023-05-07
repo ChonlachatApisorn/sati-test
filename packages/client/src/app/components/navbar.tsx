@@ -15,7 +15,7 @@ export function Navbar({ children }: PropType) {
     },
     {
       name: 'Edit Profile',
-      path: 'update-profile',
+      path: `update-profile/${data._id}`,
     },
     {
       name: 'Log Out',
