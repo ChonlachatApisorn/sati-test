@@ -9,4 +9,5 @@ export const UserUrl = {
 
 export const BlogUrl = {
   list: `blog/list`,
+  create: `blog/create`,
 };

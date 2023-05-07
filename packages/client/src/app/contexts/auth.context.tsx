@@ -9,17 +9,25 @@ type PropType = {
 
 export const AuthContext = createContext({} as IAuthContext);
 function AuthProvider({ children }: PropType) {
+  const [data, setData] = useState({
+    _id: '',
+    profile_image: '',
+    first_name: '',
+    last_name: '',
+  });
   const [user, setUser] = useState(true);
-  const value = { user, setUser };
+  const value = { user, setUser, data };
 
   useEffect(() => {
     const token = localStorage.getItem('Token');
     if (token) {
-      instant.get(AuthUrl.getUser, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
-        },
-      });
+      instant
+        .get(AuthUrl.getUser, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        })
+        .then((res) => setData(res.data));
     } else {
       setUser(false);
     }

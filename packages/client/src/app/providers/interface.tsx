@@ -3,6 +3,12 @@ import { Types } from 'mongoose';
 export interface IAuthContext {
   user: boolean;
   setUser: (user: boolean) => void;
+  data: {
+    _id: string;
+    profile_image: string;
+    first_name: string;
+    last_name: string;
+  };
 }
 
 export interface IBlog {
