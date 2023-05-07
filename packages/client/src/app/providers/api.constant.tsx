@@ -6,3 +6,7 @@ export const AuthUrl = {
 export const UserUrl = {
   create: `user/create`,
 };
+
+export const BlogUrl = {
+  list: `blog/list`,
+};

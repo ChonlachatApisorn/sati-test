@@ -16,7 +16,7 @@ export class BlogService {
   }
 
   list() {
-    return this.model.find().exec();
+    return this.model.find().populate('user_id').exec();
   }
 
   update(id: string, dto: BlogDto) {
