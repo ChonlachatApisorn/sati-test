@@ -4,6 +4,7 @@ export const AuthUrl = {
 };
 
 export const UserUrl = {
+  findById: `user/findById/`,
   create: `user/create`,
 };
 

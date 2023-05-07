@@ -23,7 +23,7 @@ export function Router() {
         <>
           <Route path="*" element={<Homepage />} />
           <Route path="create-post" element={<CreatePostForm />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile/:user_id" element={<ProfilePage />} />
           <Route path="update-profile" element={<UpdateProfilePage />} />
         </>
       )}

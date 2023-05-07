@@ -6,12 +6,12 @@ type PropType = { children: JSX.Element };
 
 export function Navbar({ children }: PropType) {
   const [dropDown, setDropDown] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, data } = useContext(AuthContext);
 
   const dropDownList = [
     {
       name: 'My Profile',
-      path: 'profile',
+      path: `profile/${data._id}`,
     },
     {
       name: 'Edit Profile',

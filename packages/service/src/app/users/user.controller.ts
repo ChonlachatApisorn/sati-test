@@ -36,6 +36,11 @@ export class UserController {
     return this.service.list();
   }
 
+  @Get('findById/:id')
+  findById(@Param('id') id: string) {
+    return this.service.findById(id);
+  }
+
   @Put('update/:id')
   update(@Param('id') id: string, @Body() dto: UserDto) {
     return this.service.update(id, dto);
