@@ -20,7 +20,7 @@ export function Router() {
         </>
       ) : (
         <>
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="*" element={<Homepage />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="create-post" element={<CreatePostForm />} />
           <Route path="profile" element={<ProfilePage />} />
