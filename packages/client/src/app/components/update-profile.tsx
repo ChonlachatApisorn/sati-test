@@ -72,7 +72,15 @@ export function UpdateProfilePage() {
             onChange={handleFileChange}
           />
           <label htmlFor="profile_image">
-            <div className="bg-sky-100 rounded-full w-48 h-48 m-10" />
+            {data.profile_image === '' ? (
+              <div className="bg-sky-100 rounded-full w-48 h-48 m-10" />
+            ) : (
+              <img
+                src={data.profile_image}
+                className="rounded-full w-48 h-48 m-10"
+                alt="profile_image"
+              />
+            )}
           </label>
           {/* profile image */}
           <div className="flex items-start w-64 m-2">
