@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { BaseSchema } from '../../common/base.schema';
+import { UserData } from '../../users/schema/user.schema';
 
 export type BlogDocument = BlogData & Document;
 
@@ -12,7 +13,7 @@ export class BlogData extends BaseSchema {
   @Prop()
   image: string;
 
-  @Prop()
-  user_id: string;
+  @Prop({ type: Types.ObjectId, ref: 'UserData' })
+  user_id: UserData | Types.ObjectId;
 }
 export const BlogSchema = SchemaFactory.createForClass(BlogData);

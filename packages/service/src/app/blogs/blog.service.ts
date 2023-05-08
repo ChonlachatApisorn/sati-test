@@ -16,7 +16,7 @@ export class BlogService {
   }
 
   list() {
-    return this.model.find().exec();
+    return this.model.find().populate('user_id').exec();
   }
 
   update(id: string, dto: BlogDto) {
@@ -29,5 +29,9 @@ export class BlogService {
 
   uploadPathImage(id: string, imageUrl: string) {
     return this.model.findByIdAndUpdate(id, { image: imageUrl }, { new: true });
+  }
+
+  findById(id: string) {
+    return this.model.findById(id);
   }
 }

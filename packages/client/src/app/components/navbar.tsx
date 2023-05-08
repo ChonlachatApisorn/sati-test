@@ -1,33 +1,40 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/auth.context';
 
 type PropType = { children: JSX.Element };
 
 export function Navbar({ children }: PropType) {
   const [dropDown, setDropDown] = useState(false);
+  const { user, data } = useContext(AuthContext);
 
   const dropDownList = [
     {
       name: 'My Profile',
-      path: 'profile',
+      path: `profile/${data._id}`,
     },
     {
       name: 'Edit Profile',
-      path: 'update-profile',
+      path: `update-profile/${data._id}`,
     },
     {
       name: 'Log Out',
-      path: 'login',
+      path: 'sign-in',
     },
   ];
+
+  function refreshPage() {
+    window.location.reload();
+  }
 
   function handleLogout(item: string) {
     if (item === 'Log Out') {
       localStorage.removeItem('Token');
+      refreshPage();
     }
   }
 
-  return (
+  return user === true ? (
     <>
       <nav className="flex items-center h-16 bg-sky-950">
         <div className="flex m-5 w-full justify-between">
@@ -76,5 +83,7 @@ export function Navbar({ children }: PropType) {
       </nav>
       <div>{children}</div>
     </>
+  ) : (
+    children
   );
 }

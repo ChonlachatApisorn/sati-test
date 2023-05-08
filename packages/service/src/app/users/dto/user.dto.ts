@@ -3,5 +3,6 @@ export class UserDto {
   last_name: string;
   password: string;
   email: string;
-  // date_of_birth: string
+  date_of_birth: string;
+  profile_image: string;
 }

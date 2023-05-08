@@ -1,4 +1,35 @@
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/auth.context';
+import { useNavigate } from 'react-router-dom';
+import instant from '../../providers/axios.instant';
+import { AuthUrl } from '../../providers/api.constant';
+
 export function SignIn() {
+  const [userInput, setUserInput] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { setUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  }
+
+  function onSubmit(e: React.FormEvent<EventTarget>) {
+    e.preventDefault();
+    const input = {
+      email: userInput.email,
+      password: userInput.password,
+    };
+    instant.post(AuthUrl.signIn, input).then((res) => {
+      localStorage.setItem('Token', JSON.stringify(res.data.access_token));
+      setUser(true);
+      navigate('homepage');
+    });
+  }
   return (
     <div className="h-screen flex">
       <div className="lg:flex w-full lg:w-1/2 justify-around items-center bg-[url(https://homeguru.homepro.co.th/wp-content/uploads/2020/03/covid-19-1200x630px.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
@@ -7,7 +38,10 @@ export function SignIn() {
       </div>
       <div className="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
         <div className="w-full px-8 md:px-32 lg:px-24">
-          <form className="bg-white rounded-md shadow-2xl p-5">
+          <form
+            className="bg-white rounded-md shadow-2xl p-5"
+            onSubmit={onSubmit}
+          >
             <h1 className="text-cyan-700 font-bold text-2xl mb-1">
               Hello Again!
             </h1>
@@ -33,6 +67,7 @@ export function SignIn() {
                 type="text"
                 name="email"
                 placeholder="Email"
+                onChange={handleOnChange}
               />
             </div>
             <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
@@ -54,6 +89,7 @@ export function SignIn() {
                 type="password"
                 name="password"
                 placeholder="Password"
+                onChange={handleOnChange}
               />
             </div>
             <button

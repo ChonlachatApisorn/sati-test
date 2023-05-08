@@ -45,8 +45,23 @@ export class BlogController {
     return this.service.list();
   }
 
+  @Get('findById/:id')
+  findById(@Param('id') id: string) {
+    return this.service.findById(id);
+  }
+
+  @UseGuards(JwtGuard)
+  @UseInterceptors(FileInterceptor('image'))
   @Put('update/:id')
-  update(@Param('id') id: string, @Body() dto: BlogDto) {
+  async update(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: BlogDto
+  ) {
+    if (file) {
+      const image = await this.uploadService.upload(file);
+      dto.image = image.url;
+    }
     return this.service.update(id, dto);
   }
 
