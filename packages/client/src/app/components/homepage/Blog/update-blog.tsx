@@ -30,10 +30,17 @@ export function UpdateBlogPage() {
   }
 
   function onDelete() {
-    instant
-      .delete(BlogUrl.dalete + blog_id)
-      .then(() => alert('Delete post succeed!!'))
-      .then(() => navigate('*'));
+    const token = localStorage.getItem('Token');
+    if (token) {
+      instant
+        .delete(BlogUrl.dalete + blog_id, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        })
+        .then(() => alert('Delete post succeed!!'))
+        .then(() => navigate('*'));
+    }
   }
 
   function onSubmit(e: React.FormEvent<EventTarget>) {

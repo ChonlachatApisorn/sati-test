@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import instant from '../../../providers/axios.instant';
 import { BlogUrl } from '../../../providers/api.constant';
 import { IBlog } from '../../../providers/interface';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/auth.context';
 
 export function BlogCard() {
   const [dataBlog, setDataBlog] = useState([]);
+  const { data } = useContext(AuthContext);
 
   useEffect(() => {
     instant.get(BlogUrl.list).then((res) => setDataBlog(res.data));
@@ -29,9 +31,13 @@ export function BlogCard() {
                 </label>
               </div>
               <div>
-                <Link to={`update-blog/${item._id}`}>
-                  <BiDotsHorizontalRounded className="mr-4 text-sky-50 text-2xl" />
-                </Link>
+                {data._id === item.user_id._id.toString() ? (
+                  <Link to={`update-blog/${item._id}`}>
+                    <BiDotsHorizontalRounded className="mr-4 text-sky-50 text-2xl" />
+                  </Link>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
             <div className="grid grid-cols-2">
