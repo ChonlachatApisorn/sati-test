@@ -30,16 +30,25 @@ export function SignUp() {
       password: data.password,
       date_of_birth: data.date_of_birth,
     };
+    const passwordRegex = new RegExp(
+      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*-_])(?=.{8,})'
+    );
 
-    if (dataUser.password === data.confirm_password) {
-      instant
-        .post(UserUrl.create, dataUser)
-        .then(() => {
-          alert('Sign up succeed!!');
-        })
-        .then(() => navigate('/sign-in'));
+    if (!passwordRegex.test(dataUser.password)) {
+      alert(
+        'Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character.'
+      );
     } else {
-      alert("Password doesn't match!!");
+      if (dataUser.password === data.confirm_password) {
+        instant
+          .post(UserUrl.create, dataUser)
+          .then(() => {
+            alert('Sign up succeed!!');
+          })
+          .then(() => navigate('/sign-in'));
+      } else {
+        alert("Password doesn't match!!");
+      }
     }
   }
 
