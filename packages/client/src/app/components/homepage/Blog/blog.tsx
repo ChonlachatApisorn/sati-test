@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import instant from '../../providers/axios.instant';
-import { BlogUrl } from '../../providers/api.constant';
-import { IBlog } from '../../providers/interface';
+import instant from '../../../providers/axios.instant';
+import { BlogUrl } from '../../../providers/api.constant';
+import { IBlog } from '../../../providers/interface';
+import { Link } from 'react-router-dom';
 
 export function BlogCard() {
-  const [data, setData] = useState([]);
+  const [dataBlog, setDataBlog] = useState([]);
 
   useEffect(() => {
-    instant.get(BlogUrl.list).then((res) => setData(res.data));
+    instant.get(BlogUrl.list).then((res) => setDataBlog(res.data));
   }, []);
 
   return (
     <div className="flex justify-center">
       <div className="grid grid-cols-3 w-screen">
-        {data.map((item: IBlog) => (
+        {dataBlog.map((item: IBlog) => (
           <div className="flex flex-col items-center bg-sky-900 rounded-3xl drop-shadow-xl w-96 h-64 mx-20 mt-20">
             <div className="flex flex-row items-center w-full h-16 rounded-t-3xl bg-sky-800">
               <div className="flex flex-row w-full">
@@ -28,7 +29,9 @@ export function BlogCard() {
                 </label>
               </div>
               <div>
-                <BiDotsHorizontalRounded className="mr-4 text-sky-50 text-2xl" />
+                <Link to={`update-blog/${item._id}`}>
+                  <BiDotsHorizontalRounded className="mr-4 text-sky-50 text-2xl" />
+                </Link>
               </div>
             </div>
             <div className="grid grid-cols-2">

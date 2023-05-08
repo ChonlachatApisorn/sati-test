@@ -2,11 +2,12 @@ import { Route, Routes } from 'react-router-dom';
 import SignIn from './components/sign-in/signin';
 import SignUp from './components/sign-up/signup';
 import Homepage from './components/homepage/homepage';
-import CreatePostForm from './components/createpost';
+import CreatePostForm from './components/homepage/Blog/create-blog';
 import ProfilePage from './components/profile';
 import UpdateProfilePage from './components/update-profile';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/auth.context';
+import { UpdateBlogPage } from './components/homepage/Blog/update-blog';
 
 export function Router() {
   const { user } = useContext(AuthContext);
@@ -28,6 +29,7 @@ export function Router() {
             path="update-profile/:user_id"
             element={<UpdateProfilePage />}
           />
+          <Route path="update-blog/:blog_id" element={<UpdateBlogPage />} />
         </>
       )}
     </Routes>

@@ -11,5 +11,8 @@ export const UserUrl = {
 
 export const BlogUrl = {
   list: `blog/list`,
+  findById: `blog/findById/`,
   create: `blog/create`,
+  update: `blog/update/`,
+  dalete: `blog/delete/`,
 };

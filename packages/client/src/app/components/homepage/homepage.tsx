@@ -1,4 +1,4 @@
-import BlogCard from './blog';
+import BlogCard from './Blog/blog';
 
 export function Homepage() {
   return (

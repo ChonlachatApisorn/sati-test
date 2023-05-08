@@ -30,4 +30,8 @@ export class BlogService {
   uploadPathImage(id: string, imageUrl: string) {
     return this.model.findByIdAndUpdate(id, { image: imageUrl }, { new: true });
   }
+
+  findById(id: string) {
+    return this.model.findById(id);
+  }
 }

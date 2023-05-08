@@ -12,6 +12,7 @@ export interface IAuthContext {
 }
 
 export interface IBlog {
+  _id: Types.ObjectId;
   description: string;
   image: string;
   user_id: {

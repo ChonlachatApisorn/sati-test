@@ -44,7 +44,6 @@ export function UpdateProfilePage() {
       profile_image: data.profile_image,
       date_of_birth: data.date_of_birth,
     };
-    console.log(dataUser);
 
     const token = localStorage.getItem('Token');
     if (token) {
