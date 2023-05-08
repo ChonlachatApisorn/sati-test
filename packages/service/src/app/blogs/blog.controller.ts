@@ -65,6 +65,7 @@ export class BlogController {
     return this.service.update(id, dto);
   }
 
+  @UseGuards(JwtGuard)
   @Delete('delete/:id')
   delete(@Param('id') id: string) {
     return this.service.delete(id);
