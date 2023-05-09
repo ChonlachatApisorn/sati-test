@@ -11,6 +11,7 @@ export function UpdateProfilePage() {
     profile_image: '',
     date_of_birth: '',
   });
+  const [preview, setPreview] = useState({ url: '' });
   const { user_id } = useParams();
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ export function UpdateProfilePage() {
         ...data,
         [e.target.name]: e.target.files[0],
       });
+      setPreview({ url: URL.createObjectURL(e.target.files[0]) });
     }
   }
 
@@ -68,20 +70,24 @@ export function UpdateProfilePage() {
             className="hidden"
             id="profile_image"
             name="profile_image"
+            accept="image/png, image/jpeg"
             onChange={handleFileChange}
           />
           <label htmlFor="profile_image">
-            {data.profile_image === '' ? (
-              <div className="bg-sky-100 rounded-full w-48 h-48 m-10" />
+            {data.profile_image !== '' ? (
+              <img
+                src={preview.url}
+                alt="preview"
+                className="rounded-full w-48 h-48 m-10 bg-sky-100 object-cover"
+              />
             ) : (
               <img
                 src={data.profile_image}
-                className="rounded-full w-48 h-48 m-10"
+                className="rounded-full w-48 h-48 m-10 object-cover"
                 alt="profile_image"
               />
             )}
           </label>
-          {/* profile image */}
           <div className="flex items-start w-64 m-2">
             <span className="mx-3">First Name : </span>
             <input

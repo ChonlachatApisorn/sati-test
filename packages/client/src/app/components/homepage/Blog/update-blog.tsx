@@ -8,7 +8,7 @@ export function UpdateBlogPage() {
     description: '',
     image: '',
   });
-
+  const [preview, setPreview] = useState({ url: '' });
   const { blog_id } = useParams();
   const navigate = useNavigate();
 
@@ -26,6 +26,7 @@ export function UpdateBlogPage() {
         ...data,
         [e.target.name]: e.target.files[0],
       });
+      setPreview({ url: URL.createObjectURL(e.target.files[0]) });
     }
   }
 
@@ -88,16 +89,25 @@ export function UpdateBlogPage() {
             type="file"
             name="image"
             id="image"
+            accept="image/png, image/jpeg"
             className="m-5 hidden"
             onChange={handleFileChange}
           />
           <div>
             <label htmlFor="image">
-              <img
-                src={data.image}
-                alt="blog_image"
-                className="drop-shadow-xl rounded-lg w-[400px] h-48 object-cover m-5"
-              />
+              {data.image === '' || preview.url !== '' ? (
+                <img
+                  src={preview.url}
+                  alt="blog_image"
+                  className="drop-shadow-xl rounded-lg w-[400px] h-48 object-cover m-5"
+                />
+              ) : (
+                <img
+                  src={data.image}
+                  alt="blog_image"
+                  className="drop-shadow-xl rounded-lg w-[400px] h-48 object-cover m-5"
+                />
+              )}
             </label>
           </div>
           <div className="flex w-[400px] mt-3">
