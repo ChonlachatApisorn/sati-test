@@ -6,3 +6,8 @@ export class UserDto {
   date_of_birth: string;
   profile_image: string;
 }
+
+export class ChangePassword {
+  old: string;
+  new: string;
+}

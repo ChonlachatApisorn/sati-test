@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { UserUrl } from '../providers/api.constant';
 import instant from '../providers/axios.instant';
+import { AuthContext } from '../contexts/auth.context';
 
 export function UpdateProfilePage() {
-  const [data, setData] = useState({
+  const [userData, setUserData] = useState({
     first_name: '',
     last_name: '',
     email: '',
@@ -12,21 +13,22 @@ export function UpdateProfilePage() {
     date_of_birth: '',
   });
   const [preview, setPreview] = useState({ url: '' });
+  const { data } = useContext(AuthContext);
   const { user_id } = useParams();
   const navigate = useNavigate();
 
   function handleChange(
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) {
-    setData({
-      ...data,
+    setUserData({
+      ...userData,
       [e.target.name]: e.target.value,
     });
   }
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
-      setData({
-        ...data,
+      setUserData({
+        ...userData,
         [e.target.name]: e.target.files[0],
       });
       setPreview({ url: URL.createObjectURL(e.target.files[0]) });
@@ -34,17 +36,19 @@ export function UpdateProfilePage() {
   }
 
   useEffect(() => {
-    instant.get(UserUrl.findById + user_id).then((res) => setData(res.data));
+    instant
+      .get(UserUrl.findById + user_id)
+      .then((res) => setUserData(res.data));
   }, [user_id]);
 
   function onSubmit(e: React.FormEvent<EventTarget>) {
     e.preventDefault();
     const dataUser = {
-      first_name: data.first_name,
-      last_name: data.last_name,
-      email: data.email,
-      profile_image: data.profile_image,
-      date_of_birth: data.date_of_birth,
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+      email: userData.email,
+      profile_image: userData.profile_image,
+      date_of_birth: userData.date_of_birth,
     };
 
     const token = localStorage.getItem('Token');
@@ -74,7 +78,7 @@ export function UpdateProfilePage() {
             onChange={handleFileChange}
           />
           <label htmlFor="profile_image">
-            {data.profile_image !== '' ? (
+            {userData.profile_image !== '' ? (
               <img
                 src={preview.url}
                 alt="preview"
@@ -82,7 +86,7 @@ export function UpdateProfilePage() {
               />
             ) : (
               <img
-                src={data.profile_image}
+                src={userData.profile_image}
                 className="rounded-full w-48 h-48 m-10 object-cover"
                 alt="profile_image"
               />
@@ -95,7 +99,7 @@ export function UpdateProfilePage() {
               className=" pl-2 rounded-md w-32 outline-none border-none text-md font-normal text-black"
               type="text"
               name="first_name"
-              value={data.first_name}
+              value={userData.first_name}
               onChange={handleChange}
             />
           </div>
@@ -106,7 +110,7 @@ export function UpdateProfilePage() {
               className=" pl-2 rounded-md w-32 outline-none border-none text-md font-normal text-black"
               type="text"
               name="last_name"
-              value={data.last_name}
+              value={userData.last_name}
               onChange={handleChange}
             />
           </div>
@@ -117,7 +121,7 @@ export function UpdateProfilePage() {
               className=" pl-2 rounded-md w-[168px] outline-none border-none text-md font-normal text-black"
               type="email"
               name="email"
-              value={data.email}
+              value={userData.email}
               onChange={handleChange}
             />
           </div>
@@ -128,7 +132,7 @@ export function UpdateProfilePage() {
               className=" pl-2 rounded-md w-[142px] outline-none border-none text-md font-normal text-black"
               type="date"
               name="date_of_birth"
-              value={data.date_of_birth}
+              value={userData.date_of_birth}
               onChange={handleChange}
             />
           </div>
@@ -138,6 +142,13 @@ export function UpdateProfilePage() {
           >
             Update Profile
           </button>
+          <div className="flex justify-center">
+            <Link to={`/change-password/${data._id}`}>
+              <span className="text-sm font-normal hover:underline">
+                change password ?
+              </span>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

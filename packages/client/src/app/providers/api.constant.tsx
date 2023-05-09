@@ -7,6 +7,8 @@ export const UserUrl = {
   findById: `user/findById/`,
   create: `user/create`,
   update: `user/update/`,
+  checkPassword: `user/check-password/`,
+  updatePassword: `user/change-password/`,
 };
 
 export const BlogUrl = {
