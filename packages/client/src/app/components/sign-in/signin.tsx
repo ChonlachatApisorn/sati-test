@@ -24,11 +24,14 @@ export function SignIn() {
       email: userInput.email,
       password: userInput.password,
     };
-    instant.post(AuthUrl.signIn, input).then((res) => {
-      localStorage.setItem('Token', JSON.stringify(res.data.access_token));
-      setUser(true);
-      navigate('/homepage');
-    });
+    instant
+      .post(AuthUrl.signIn, input)
+      .then((res) => {
+        localStorage.setItem('Token', JSON.stringify(res.data.access_token));
+        setUser(true);
+        navigate('/homepage');
+      })
+      .catch(() => alert('Email or Password is incorrect!!'));
   }
   return (
     <div className="h-screen flex">

@@ -78,7 +78,7 @@ export function UpdateProfilePage() {
             onChange={handleFileChange}
           />
           <label htmlFor="profile_image">
-            {userData.profile_image !== '' ? (
+            {userData.profile_image === '' ? (
               <img
                 src={preview.url}
                 alt="preview"
