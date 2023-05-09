@@ -58,4 +58,15 @@ export class UserController {
   delete(@Param('id') id: string) {
     return this.service.delete(id);
   }
+
+  @Post('check-password/:id')
+  checkPassword(@Param('id') id: string, @Body() dto: { password: string }) {
+    return this.service.checkPassword(id, dto);
+  }
+
+  @UseGuards(JwtGuard)
+  @Put('change-password/:id')
+  updatePassword(@Param('id') id: string, @Body() dto: UserDto) {
+    return this.service.updatePassword(id, dto);
+  }
 }
