@@ -27,7 +27,7 @@ export function SignIn() {
     instant.post(AuthUrl.signIn, input).then((res) => {
       localStorage.setItem('Token', JSON.stringify(res.data.access_token));
       setUser(true);
-      navigate('homepage');
+      navigate('/homepage');
     });
   }
   return (

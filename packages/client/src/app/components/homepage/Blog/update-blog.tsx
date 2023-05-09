@@ -40,7 +40,7 @@ export function UpdateBlogPage() {
           },
         })
         .then(() => alert('Delete post succeed!!'))
-        .then(() => navigate('*'));
+        .then(() => navigate('/*'));
     }
   }
 
@@ -60,7 +60,7 @@ export function UpdateBlogPage() {
           },
         })
         .then(() => alert('Update succeed!!'))
-        .then(() => navigate('*'));
+        .then(() => navigate('/*'));
     }
   }
 

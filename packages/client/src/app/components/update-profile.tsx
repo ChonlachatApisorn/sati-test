@@ -57,7 +57,7 @@ export function UpdateProfilePage() {
           },
         })
         .then(() => alert('Update Profile succeed!!'))
-        .then(() => navigate('*'));
+        .then(() => navigate('/*'));
     }
   }
 
