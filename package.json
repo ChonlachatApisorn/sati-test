@@ -5,6 +5,8 @@
   "scripts": {
     "start:service": "nx run service:serve",
     "start:client": "nx run client:serve",
+    "build:service": "nx run service:build",
+    "build:client": "nx run client:build",
     "format": "nx format:write"
   },
   "private": true,
