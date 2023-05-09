@@ -2,7 +2,11 @@
   "name": "sati-test",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start:service": "nx run service:serve",
+    "start:client": "nx run client:serve",
+    "format": "nx format:write"
+  },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
