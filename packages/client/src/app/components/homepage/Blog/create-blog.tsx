@@ -28,7 +28,6 @@ export function CreatePostForm() {
         ...dataInput,
         [e.target.name]: e.target.files[0],
       });
-      console.log(dataInput);
     }
   }
 
@@ -39,8 +38,6 @@ export function CreatePostForm() {
       image: dataInput.image,
       user_id: dataInput.user_id,
     };
-    console.log(data);
-
     const token = localStorage.getItem('Token');
     if (token) {
       instant

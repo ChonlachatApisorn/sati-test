@@ -15,7 +15,6 @@ export function ProfilePage() {
 
   useEffect(() => {
     instant.get(UserUrl.findById + user_id).then((res) => setData(res.data));
-    console.log(data);
   }, [user_id]);
   return (
     <div className="flex justify-center bg-sky-950 w-screen h-screen">
