@@ -60,7 +60,7 @@ export function Navbar({ children }: PropType) {
           {dropDown && (
             <div className="flex absolute justify-end w-screen m-3 -ml-8">
               <ul
-                className="absolute shadow-xl rounded-lg bg-sky-100 w-48 mt-5"
+                className="absolute shadow-xl rounded-lg bg-sky-100 w-48 mt-5 z-10"
                 onMouseLeave={() => setDropDown(false)}
               >
                 {dropDownList.map((item, index) => (
