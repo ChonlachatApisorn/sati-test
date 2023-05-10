@@ -7,6 +7,7 @@ import { RiImageAddFill } from 'react-icons/ri';
 
 export function CreatePostForm() {
   const { data } = useContext(AuthContext);
+  const [preview, setPreview] = useState({ url: '' });
   const [dataInput, setDataInput] = useState({
     description: '',
     image: '',
@@ -28,6 +29,7 @@ export function CreatePostForm() {
         ...dataInput,
         [e.target.name]: e.target.files[0],
       });
+      setPreview({ url: URL.createObjectURL(e.target.files[0]) });
     }
   }
 
@@ -66,6 +68,24 @@ export function CreatePostForm() {
             placeholder="Your Text"
             onChange={handleChange}
           />
+          <label htmlFor="image">
+            {preview.url === '' ? (
+              <div className="flex justify-center items-center">
+                <div className="flex flex-col justify-center items-center absolute">
+                  <RiImageAddFill className="z-10 text-3xl" />
+                  <span className="z-10">Add Your Image</span>
+                </div>
+                <div className="rounded-xl w-[400px] h-56 p-2 bg-sky-50  m-10 hover:bg-sky-100 hover:opacity-80 cursor-pointer" />
+              </div>
+            ) : (
+              <img
+                src={preview.url}
+                alt="image_blog"
+                className="rounded-xl w-[400px] h-56 p-2 bg-sky-50  m-10 hover:bg-sky-100 hover:opacity-80 cursor-pointer object-cover"
+              />
+            )}
+          </label>
+
           <input
             type="file"
             name="image"
@@ -74,15 +94,6 @@ export function CreatePostForm() {
             className="m-5 hidden"
             onChange={handleFileChange}
           />
-          <label htmlFor="image">
-            <div className="flex justify-center items-center">
-              <div className="flex flex-col justify-center items-center absolute">
-                <RiImageAddFill className="z-10 text-3xl" />
-                <span className="z-10">Add Your Image</span>
-              </div>
-              <div className="rounded-xl w-[400px] h-56 p-2 bg-sky-50  m-10 hover:bg-sky-100 hover:opacity-80 cursor-pointer" />
-            </div>
-          </label>
 
           <button
             type="submit"
