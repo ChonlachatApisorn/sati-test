@@ -67,7 +67,7 @@ export function UpdateProfilePage() {
 
   return (
     <div className="flex justify-center bg-sky-950 w-screen h-screen">
-      <div className="flex flex-col items-center bg-sky-900 font-bold text-sky-100 rounded-xl w-1/2 h-1/2 m-20 ">
+      <div className="flex flex-col items-center bg-sky-900 font-bold text-sky-100 rounded-xl w-1/2 h-[520px] m-20 ">
         <form onSubmit={onSubmit}>
           <input
             type="file"
@@ -78,16 +78,16 @@ export function UpdateProfilePage() {
             onChange={handleFileChange}
           />
           <label htmlFor="profile_image">
-            {userData.profile_image === '' ? (
+            {userData.profile_image === '' || preview.url !== '' ? (
               <img
                 src={preview.url}
                 alt="preview"
-                className="rounded-full w-48 h-48 m-10 bg-sky-100 object-cover"
+                className="rounded-full w-48 h-48 m-10 bg-sky-100 object-cover hover:bg-sky-200 hover:opacity-80 cursor-pointer"
               />
             ) : (
               <img
                 src={userData.profile_image}
-                className="rounded-full w-48 h-48 m-10 object-cover"
+                className="rounded-full w-48 h-48 m-10 hover:bg-sky-200 hover:opacity-80 cursor-pointer object-cover"
                 alt="profile_image"
               />
             )}

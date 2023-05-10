@@ -99,13 +99,13 @@ export function UpdateBlogPage() {
                 <img
                   src={preview.url}
                   alt="blog_image"
-                  className="drop-shadow-xl rounded-lg w-[400px] h-48 object-cover m-5"
+                  className="drop-shadow-xl bg-sky-100 rounded-lg w-[400px] h-48 object-cover m-5 p-2 hover:bg-sky-100 hover:opacity-80 cursor-pointer"
                 />
               ) : (
                 <img
                   src={data.image}
                   alt="blog_image"
-                  className="drop-shadow-xl rounded-lg w-[400px] h-48 object-cover m-5"
+                  className="drop-shadow-xl bg-sky-100 rounded-lg w-[400px] h-48 object-cover m-5 p-2 hover:bg-sky-100 hover:opacity-80 cursor-pointer"
                 />
               )}
             </label>
